@@ -1,11 +1,9 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 # Base stuff
-RUN sed -i -e 's/http.debian.net/ftp.us.debian.org/g' /etc/apt/sources.list && \
-    sed -i -e 's/httpredir/ftp.us/g' /etc/apt/sources.list && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y curl unzip supervisor wget && \
+    apt-get install -y curl unzip wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Java 8
