@@ -1,10 +1,10 @@
 FROM diogok/java8
 
-RUN curl https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.deb  \
-    --insecure -o /root/elasticsearch-1.4.4.deb 
+RUN curl https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.1.deb  \
+    --insecure -o /root/elasticsearch-1.7.1.deb 
 
 RUN apt-get update && apt-get install adduser && \
-    dpkg -i /root/elasticsearch-1.4.4.deb && rm /root/elasticsearch-1.4.4.deb && \
+    dpkg -i /root/elasticsearch-1.7.1.deb && rm /root/elasticsearch-1.7.1.deb && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /usr/share/elasticsearch/config && cp /etc/elasticsearch/* /usr/share/elasticsearch/config && mkdir /usr/share/elasticsearch/config/templates
