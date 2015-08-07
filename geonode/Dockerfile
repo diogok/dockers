@@ -12,8 +12,9 @@ WORKDIR /geonode
 RUN pip install -e /geonode
 RUN paver setup
 
-RUN apt-get purge ant maven2 build-essential && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get purge -y ant maven2 build-essential && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-CMD ["paver", "start", "-b 0.0.0.0:8000","-f"]
+VOLUME ["/var/lib/geoserver/geonode-data/"]
 EXPOSE 8000
+CMD ["paver", "start", "-b 0.0.0.0:8000","-f"]
 
