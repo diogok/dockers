@@ -16,5 +16,5 @@ RUN curl 'http://downloads.sourceforge.net/project/geoserver/GeoServer/2.7.2/geo
     rm /tmp/geoserver.zip
 
 # Run it
-CMD ["java","-jar","/opt/jetty.jar","--path","/","/var/webapps/geoserver.war"]
+CMD ["java","-DGEOSERVER_DATA_DIR=$GEOSERVER_DATA_DIR","-jar","/opt/jetty.jar","--path","/","/var/webapps/geoserver.war"]
 
