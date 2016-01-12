@@ -1,0 +1,5 @@
+cluster.name: docker_es
+network.host: 0.0.0.0
+script.indexed: on
+index.mapping.ignore_malformed: true
+
