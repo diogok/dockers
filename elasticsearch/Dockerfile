@@ -16,7 +16,6 @@ RUN mkdir /usr/share/elasticsearch/config && \
 
 ENV ES_HOME "/usr/share/elasticsearch"
 ENV ES_USER "elasticsearch"
-USER elasticsearch
 
 WORKDIR /usr/share/elasticsearch
 
@@ -25,6 +24,8 @@ VOLUME ["/usr/share/elasticsearch/data"]
 EXPOSE 9200 9300
 
 COPY elasticsearch.yml /usr/share/elasticsearch/config
+COPY start.sh /usr/share/elasticsearch/start.sh
+RUN chmod +x /usr/share/elasticsearch/start.sh
 
-CMD ["bin/elasticsearch"]
+CMD ["/usr/share/elasticsearch/start.sh"]
 
