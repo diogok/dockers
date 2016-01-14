@@ -9,8 +9,6 @@ RUN sed -i -e 's/http.debian.net/ftp.us.debian.org/g' /etc/apt/sources.list && \
 
 EXPOSE 80
 
-CMD ["/opt/kibana/bin/kibana"]
-
 RUN cd /opt && \
     curl -L 'https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz' -o kibana.tar.gz && \
     tar -xvf kibana.tar.gz && \
@@ -19,5 +17,8 @@ RUN cd /opt && \
 
 WORKDIR /opt/kibana
 
+CMD ["/opt/start.sh"]
 COPY kibana.yml /opt/kibana/config/kibana.yml
+COPY start.sh /opt/start.sh
+RUN chmod +x /opt/start.sh
 
