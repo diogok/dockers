@@ -16,6 +16,8 @@ COPY site.conf /etc/nginx/sites-available/default
 COPY index.php /var/www/html/index.php
 COPY supervisor.conf /etc/supervisor/conf.d/base.conf
 
+RUN sed -i -e 's/;clear_env/clear_env/' /etc/php/7.0/fpm/pool.d/www.conf
+
 EXPOSE 80
 VOLUME /var/www
 
