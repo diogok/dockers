@@ -23,6 +23,7 @@ VOLUME ["/usr/share/elasticsearch/data"]
 
 EXPOSE 9200 9300
 
+RUN bin/plugin install delete-by-query
 COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 COPY start.sh /usr/share/elasticsearch/start.sh
 RUN chmod +x /usr/share/elasticsearch/start.sh
