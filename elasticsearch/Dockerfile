@@ -1,10 +1,10 @@
 FROM diogok/java8
 
-RUN curl https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.1.1/elasticsearch-2.1.1.deb \
-    --insecure -o /root/elasticsearch-2.1.1.deb 
+RUN curl https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.1/elasticsearch-2.3.1.deb \
+    --insecure -o /root/elasticsearch-2.3.1.deb 
 
 RUN apt-get update && apt-get install adduser && \
-    dpkg -i /root/elasticsearch-2.1.1.deb && rm /root/elasticsearch-2.1.1.deb && \
+    dpkg -i /root/elasticsearch-2.3.1.deb && rm /root/elasticsearch-2.3.1.deb && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /usr/share/elasticsearch/config && \
