@@ -1,0 +1,9 @@
+FROM alpine:edge
+
+RUN apk --no-cache add tar curl
+
+RUN curl "https://caddyserver.com/download/build?os=linux&arch=arm&features=" \
+      | tar --no-same-owner -C /usr/bin/ -xz caddy
+
+CMD ["caddy", "--conf", "/etc/Caddyfile"]
+
