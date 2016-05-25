@@ -1,0 +1,7 @@
+{
+  "ID":"demo"
+  ,"Name":"demo"
+  ,"Tags":["api"]
+  ,"Address":"127.0.0.1"
+  ,"Port":80
+}
