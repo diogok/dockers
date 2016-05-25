@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-RUN apt-get update && apt-get upgrade -y && apt-get install wget -y && \
+RUN apt-get update && apt-get upgrade -y && apt-get install wget curl git -y && \
     echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list && \
     wget https://www.dotdeb.org/dotdeb.gpg && apt-key add dotdeb.gpg && \
     apt-get update && \
@@ -11,6 +11,7 @@ RUN mkdir /var/run/php
 
 EXPOSE 80
 VOLUME /var/www
+WORKDIR /var/www
 
 COPY site.conf /etc/nginx/sites-available/default
 COPY index.php /var/www/html/index.php
