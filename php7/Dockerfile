@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-RUN apt-get update && apt-get upgrade -y && apt-get install wget curl -y && \
+RUN apt-get update && apt-get upgrade -y && apt-get install wget curl git -y && \
     echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list && \
     wget https://www.dotdeb.org/dotdeb.gpg && apt-key add dotdeb.gpg && \
     apt-get update && \
@@ -24,8 +24,6 @@ RUN sed -i -e 's/;clear_env/clear_env/' /etc/php/7.0/fpm/pool.d/www.conf && \
 
 COPY run.sh /opt/run.sh
 CMD ["/opt/run.sh"]
-
-RUN apt-get update && apt-get install git -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://getcomposer.org/composer.phar && mv composer.phar /usr/bin/composer && chmod +x /usr/bin/composer
 
