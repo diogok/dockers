@@ -1,0 +1,24 @@
+version: "2"
+services:
+  elasticsearch:
+    image: diogok/logstash
+    ports:
+      - 8181:5601
+      - 9514:9514
+      - 9514:9514/udp
+      - 12201:12201/udp
+      - 9200:9200
+    networks:
+      - logs
+  elastalert:
+    image: diogok/elastalert
+    volumes:
+      - "./rules:/opt/elastalert/rules"
+    networks:
+      - logs
+  mailer:
+    image: diogok/smtp
+    networks:
+      - logs
+networks:
+  logs:
