@@ -1,6 +1,6 @@
 rules_folder: rules
 run_every:
-  seconds: 30
+  seconds: 15
 es_host: "elasticsearch"
 es_port: 9200
 alert_time_limit:
