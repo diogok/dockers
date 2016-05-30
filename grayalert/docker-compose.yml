@@ -1,0 +1,36 @@
+version: "2"
+services:
+  mongo:
+    image: "mongo:3"
+    volumes:
+      - /graylog/data/mongo:/data/db
+    networks:
+      - graynet
+  elasticsearch:
+    image: "elasticsearch:2"
+    command: "elasticsearch -Des.cluster.name='graylog'"
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - graynet
+  graylog:
+    image: graylog2/server:2.0.1-1
+    volumes:
+      - ./data/journal:/usr/share/graylog/data/journal
+      - ./config:/usr/share/graylog/data/config
+    environment:
+      GRAYLOG_PASSWORD_SECRET: lol132
+      GRAYLOG_ROOT_PASSWORD_SHA2: 7ae53bf97ae94c3bc3e96a3ca6d5d79d9c1338fabcf1c3324662f4528b25e3e6
+      GRAYLOG_REST_TRANSPORT_URI: http://127.0.0.1:12900
+    ports:
+      - "9000:9000"
+      - "12900:12900"
+      - 9514:9514/udp
+    networks:
+      - graynet
+  mailer:
+    image: diogok/smtp
+    networks:
+      - graynet
+networks:
+  graynet:
