@@ -1,8 +1,11 @@
 version: '2'
 services:
   consul:
-    image: progrium/consul
+    image: diogok/consul
     hostname: "consul"
+    command: "-bootstrap"
+    dns:
+      - c
     environment:
       GOMAXPROCS: 4
     volumes:
@@ -10,7 +13,6 @@ services:
     ports:
       - 8500:8500
       - 8600:53/udp
-    command: "-server -bootstrap -ui-dir /ui"
     networks:
       - consul
   mailer:

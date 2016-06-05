@@ -2,9 +2,9 @@
 
 . config.ini
 
-sleep 5
-
-[[ -z $URL ]] && URL="http://localhost:8500"
+[[ -n $1 ]] && URL=$1
+[[ -z $URL ]] && URL="http://52.34.62.7:8500"
+[[ -n $WAIT ]] && sleep $WAIT 
 
 cd services
 for FILE in $(ls *.json)
