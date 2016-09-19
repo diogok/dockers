@@ -1,18 +1,15 @@
 FROM debian:jessie
 
-RUN sed -i -e 's/http.debian.net/ftp.us.debian.org/g' /etc/apt/sources.list && \
-    sed -i -e 's/httpredir/ftp.us/g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -qy curl && \
+RUN apt-get update && \
+    apt-get install -y curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 80
+EXPOSE 8001
 
 RUN cd /opt && \
-    curl -L 'https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz' -o kibana.tar.gz && \
+    curl -L 'https://download.elastic.co/kibana/kibana/kibana-4.6.1-linux-x86_64.tar.gz' -o kibana.tar.gz && \
     tar -xvf kibana.tar.gz && \
-    mv kibana-4.3.1-linux-x64 kibana && \
+    mv kibana-4.6.1-linux-x86_64 kibana && \
     rm kibana.tar.gz
 
 WORKDIR /opt/kibana

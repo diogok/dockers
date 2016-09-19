@@ -1,10 +1,10 @@
 FROM diogok/java8:zulu
 
-RUN curl https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.3/elasticsearch-2.3.3.deb \
-    --insecure -o /root/elasticsearch-2.3.3.deb 
+RUN curl https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.0/elasticsearch-2.4.0.deb \
+    --insecure -o /root/elasticsearch-2.4.0.deb 
 
 RUN apt-get update && apt-get install adduser && \
-    dpkg -i /root/elasticsearch-2.3.3.deb && rm /root/elasticsearch-2.3.3.deb && \
+    dpkg -i /root/elasticsearch-2.4.0.deb && rm /root/elasticsearch-2.4.0.deb && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /usr/share/elasticsearch/config && \
