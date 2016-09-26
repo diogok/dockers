@@ -3,3 +3,5 @@ network.host: 0.0.0.0
 script.indexed: on
 index.mapping.ignore_malformed: true
 index.query.bool.max_clause_count: 1048576
+http.cors.enabled: true
+http.cors.allow-origin: "*"
