@@ -7,7 +7,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install wget curl git unzip 
     apt-get install nginx php7.0 php7.0-common php7.0-json php7.0-mysql php7.0-curl php7.0-gd php7.0-pdo php7.0-zip php7.0-xml php7.0-pdo-mysql php7.0-pdo-pgsql php7.0-pdo-sqlite php7.0-mysql php7.0-pgsql php7.0-sqlite3 php7.0-fpm -y --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /var/run/php
+RUN mkdir -p /var/run/php
 
 EXPOSE 80
 VOLUME /var/www
