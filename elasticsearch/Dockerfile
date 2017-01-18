@@ -1,11 +1,14 @@
 FROM diogok/java8:zulu
 
-RUN curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb \
-    --insecure -o /root/elasticsearch-5.0.0.deb 
-
 RUN apt-get update && apt-get install adduser && \
-    dpkg -i /root/elasticsearch-5.0.0.deb && rm /root/elasticsearch-5.0.0.deb && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.1.2.deb \
+    --insecure -o /root/elasticsearch-5.1.2.deb 
+
+ENV ES_SKIP_SET_KERNEL_PARAMETERS "true"
+
+RUN dpkg -i /root/elasticsearch-5.1.2.deb && rm /root/elasticsearch-5.1.2.deb
 
 RUN mkdir /usr/share/elasticsearch/config && \
     cp -a /etc/elasticsearch/* /usr/share/elasticsearch/config && \
