@@ -7,9 +7,9 @@ RUN apt-get update && \
 EXPOSE 8001
 
 RUN cd /opt && \
-    curl -L 'https://artifacts.elastic.co/downloads/kibana/kibana-5.0.0-linux-x86_64.tar.gz' -o kibana.tar.gz && \
+    curl -L 'https://artifacts.elastic.co/downloads/kibana/kibana-5.1.2-linux-x86_64.tar.gz' -o kibana.tar.gz && \
     tar -xvf kibana.tar.gz && \
-    mv kibana-5.0.0-linux-x86_64 kibana && \
+    mv kibana-5.1.2-linux-x86_64 kibana && \
     rm kibana.tar.gz
 
 WORKDIR /opt/kibana
