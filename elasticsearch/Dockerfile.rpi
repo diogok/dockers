@@ -1,8 +1,8 @@
-FROM diogok/java8:zulu
+FROM hypriot/rpi-java
 
 EXPOSE 9200 9300
 
-RUN apt-get update && apt-get install adduser && \
+RUN apt-get update && apt-get install adduser curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV VERSION "5.2.2"
@@ -26,7 +26,7 @@ WORKDIR /usr/share/elasticsearch
 
 ENV ES_USER "elasticsearch"
 ENV ES_HOME "/usr/share/elasticsearch"
-ENV ES_JAVA_OPTS "-Des.insecure.allow.root=true -Xms2g -Xmx2g"
+ENV ES_JAVA_OPTS "-Xms384m -Xmx384m"
 
 USER elasticsearch
 
