@@ -1,0 +1,4 @@
+FROM diogok/consul:arm-agent
+
+CMD ["consul","agent","-config-dir","/config","-server","-bootstrap"]
+

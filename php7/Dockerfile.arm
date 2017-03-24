@@ -1,8 +1,9 @@
-FROM debian:jessie
+FROM resin/rpi-raspbian:jessie
 
 RUN apt-get update && apt-get install wget curl git unzip -y && \
-    echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list && \
-    wget https://www.dotdeb.org/dotdeb.gpg && apt-key add dotdeb.gpg && \
+    echo 'deb http://repozytorium.mati75.eu/raspbian jessie-backports main contrib non-free' > /etc/apt/sources.list.d/mat.list && \
+    gpg --keyserver pgpkeys.mit.edu --recv-key CCD91D6111A06851 && \
+    gpg --armor --export CCD91D6111A06851 | apt-key add - && \
     apt-get update && \
     apt-get install nginx php7.0 php7.0-common php7.0-json php7.0-mysql php7.0-curl php7.0-gd php7.0-pdo php7.0-zip php7.0-xml php7.0-pdo-mysql php7.0-pdo-pgsql php7.0-pdo-sqlite php7.0-mysql php7.0-pgsql php7.0-sqlite3 php7.0-fpm -y --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -24,8 +25,8 @@ RUN sed -i -e 's/;clear_env/clear_env/' /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e 's/max_execution_time = 30/max_execution_time = 900/g' /etc/php/7.0/fpm/php.ini && \
     echo 'request_terminate_timeout = 900' >> /etc/php/7.0/fpm/pool.d/www.conf
 
-
 COPY run.sh /opt/run.sh
+ENTRYPOINT []
 CMD ["/opt/run.sh"]
 
 RUN wget https://getcomposer.org/composer.phar && mv composer.phar /usr/bin/composer && chmod +x /usr/bin/composer

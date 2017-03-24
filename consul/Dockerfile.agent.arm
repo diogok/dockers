@@ -1,0 +1,11 @@
+FROM scratch
+
+EXPOSE 8300 8301 8302 8400 8500
+
+VOLUME /data
+COPY config /config
+
+COPY consul-arm /usr/bin/consul
+
+CMD ["consul","agent","-config-dir","/config"]
+

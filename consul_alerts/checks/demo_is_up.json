@@ -1,7 +1,0 @@
-{
-  "ID":"demo_is_up"
-  ,"Name":"demo_is_up"
-  ,"Interval":"2s"
-  ,"HTTP":"http://localhost:8080"
-  ,"Service_ID":"demo"
-}

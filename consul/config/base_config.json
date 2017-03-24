@@ -1,0 +1,16 @@
+{
+  "client_addr": "0.0.0.0",
+  "bind_addr": "0.0.0.0",
+  "advertise_addr":"172.17.0.1"
+  "data_dir": "/data",
+  "leave_on_terminate": true,
+  "ui": true,
+  "dns_config": {
+    "allow_stale": true,
+    "max_stale": "1s"
+  },
+  "dns_config": {
+    "allow_stale": false
+  },
+  "recursors":["8.8.8.8","8.8.4.4"]
+}

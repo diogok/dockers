@@ -2,23 +2,15 @@ FROM debian:jessie
 
 # Base stuff
 RUN apt-get update && \
-    apt-get upgrade -y && \
     apt-get install -y curl unzip wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Java 8
-
-ENV JAVA_HOME /usr/jdk1.8.0_65
-
-RUN curl --insecure --silent --location --retry 3 --cacert /etc/ssl/certs/GeoTrust_Global_CA.crt \
-      --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-      "http://download.oracle.com/otn-pub/java/jdk/8u65-b14/jdk-8u65-linux-x64.tar.gz" \
-      | gunzip \
-      | tar x -C /usr/ \
-      && ln -s $JAVA_HOME /usr/java \
-      && rm -rf $JAVA_HOME/src.zip $JAVA_HOME/javafx-src.zip $JAVA_HOME/man
-
-ENV PATH ${PATH}:${JAVA_HOME}/bin
-
 CMD ["java"]
+
+# Java 8
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x219BD9C9
+RUN echo "deb http://repos.azulsystems.com/debian stable main" >> /etc/apt/sources.list.d/zulu.list
+RUN apt-get update && \
+    apt-get -y install zulu-8=8.13.0.5 && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 

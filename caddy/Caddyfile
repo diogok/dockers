@@ -1,0 +1,5 @@
+localhost:443, localhost:80 {
+root /var/www/html
+tls self_signed
+gzip
+}

@@ -1,7 +1,0 @@
-{
-  "ID":"demo_memory"
-  ,"Name":"demo_memory"
-  ,"Interval":"5s"
-  ,"Service_ID":"demo"
-  ,"Script":"/opt/ops/scripts/ok.sh"
-}
