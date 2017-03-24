@@ -1,0 +1,8 @@
+version: "2"
+services:
+  couchdb:
+    image: diogok/couchdb
+    ports:
+      - 5984:5984
+    volumes:
+      - /var/data/couchdb:/opt/couchdb/data

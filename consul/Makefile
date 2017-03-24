@@ -2,7 +2,7 @@ VERSION = 0.7.5
 
 all: build clean
 
-build: amd64-server arm-server
+build: server server-arm
 
 consul-arm:
 	wget https://releases.hashicorp.com/consul/$(VERSION)/consul_$(VERSION)_linux_arm.zip -O consul.zip
@@ -16,17 +16,17 @@ consul-amd64:
 	mv consul consul-amd64
 	rm consul.zip
 
-amd64-agent: consul-amd64
+agent: consul-amd64
 	docker build -t diogok/consul:agent -f Dockerfile.agent .
 
-amd64-server: amd64-agent
+server: agent
 	docker build -t diogok/consul:server -f Dockerfile.server .
 
-arm-agent: consul-arm
-	docker build -t diogok/consul:arm-agent -f Dockerfile.agent.arm .
+agent-arm: consul-arm
+	docker build -t diogok/consul:agent-arm -f Dockerfile.agent.arm .
 
-arm-server: arm-agent
-	docker build -t diogok/consul:arm-server -f Dockerfile.server.arm .
+server-arm: agent-arm
+	docker build -t diogok/consul:server-arm -f Dockerfile.server.arm .
 
 push:
 	docker push diogok/consul

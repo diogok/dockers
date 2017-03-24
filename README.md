@@ -25,6 +25,8 @@ With some config, for amd64, arm (raspberry pi and raspberry pi zero) with optim
 
 Bind on 9200 and 9300, auto cluster and volume at /usr/share/elasticsearch/data.
 
+    docker run -p 9200:9200 -v /var/data/elasticsearch:/usr/share/elasticsearch/data diogok/elasticsearch
+
 ### Kibana
 
 Ready to connect on above ES.
@@ -76,9 +78,17 @@ NGINX with PHP7, volume on /var/www.
 - diogok/php7
 - diogok/php7:arm
 
+Example:
+
+    docker run -v/var/www:/var/www -p80:80 diogok/php7
+
 ### Consul
 
 - diogok/consul:agent
 - diogok/consul:server (will bootstrap)
-- diogok/consul:arm-agent
-- diogok/consul:arm-server (will bootstrap)
+- diogok/consul:agent-arm
+- diogok/consul:server-arm (will bootstrap)
+
+To join a cluster:
+
+    docker run diogok/consul:server -join ip

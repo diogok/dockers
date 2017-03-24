@@ -7,5 +7,5 @@ COPY config /config
 
 COPY consul-amd64 /usr/bin/consul
 
-CMD ["consul","agent","-config-dir","/config"]
+ENTRYPOINT ["consul","agent","-config-dir","/config"]
 

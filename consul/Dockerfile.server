@@ -1,4 +1,5 @@
 FROM diogok/consul:agent
 
-CMD ["consul","agent","-config-dir","/config","-server","-bootstrap"]
+ENTRYPOINT ["consul","agent","-config-dir","/config","-server"]
+CMD ["-bootstrap"]
 
