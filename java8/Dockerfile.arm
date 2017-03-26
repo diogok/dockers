@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV JAVA_HOME /opt/zulu
+ENTRYPOINT []
 
 # Java 8
 RUN wget http://cdn.azul.com/zulu-embedded/bin/ezdk-1.8.0_112-8.19.0.31-eval-linux_aarch32hf.tar.gz && \
