@@ -4,4 +4,4 @@ COPY serf-amd64 /serf
 
 EXPOSE 7373 7946
 
-CMD ["/serf","agent","-discover","docker","-iface","eth0"]
+CMD ["/serf","agent","-discover","docker","-iface","eth0","-rpc-addr","0.0.0.0:7373"]
