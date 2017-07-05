@@ -1,0 +1,11 @@
+
+:5000 {
+  tls self_signed
+
+  basicauth / user password
+  proxy / registry:5000 {
+    transparent
+  }
+}
+
+

@@ -1,0 +1,15 @@
+version: "2"
+services:
+  proxy:
+    image: diogok/registry-proxy
+    environment:
+      USER: "demo"
+      PASSWORD: "demo"
+    ports:
+      - 5000:5000
+  registry:
+    image: registry:2
+    environment:
+      REGISTRY_HTTP_ADDR: "0.0.0.0:5000"
+    volumes:
+      - /var/lib/registry:/var/lib/registry
