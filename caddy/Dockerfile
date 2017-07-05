@@ -1,9 +1,9 @@
-FROM alpine:edge
+FROM debian:jessie
 
-RUN apk --no-cache add --virtual devs tar curl git
+RUN apt-get update && apt-get install -yq tar curl git
 
-RUN curl "https://caddyserver.com/download/build?os=linux&arch=amd64&v=0.9.5&features=" \
-      | tar --no-same-owner -C /usr/bin/ -xz caddy
+RUN curl "https://github.com/mholt/caddy/releases/download/v0.10.4/caddy_v0.10.4_linux_amd64.tar.gz" -L -o caddy.tar.gz && \
+    tar --no-same-owner -C /usr/bin/ -xf caddy.tar.gz && rm caddy.tar.gz
 
 EXPOSE 80
 EXPOSE 443
