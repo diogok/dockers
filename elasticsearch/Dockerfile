@@ -1,36 +1,11 @@
-FROM diogok/java8:zulu
+FROM docker.elastic.co/elasticsearch/elasticsearch:5.4.2
 
 EXPOSE 9200 9300
-
-RUN apt-get update && apt-get install adduser && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-ENV VERSION "5.2.2"
-
-RUN curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$VERSION.deb \
-    --insecure -o /root/elasticsearch-$VERSION.deb 
-
-ENV ES_SKIP_SET_KERNEL_PARAMETERS "true"
-
-RUN dpkg -i /root/elasticsearch-$VERSION.deb && rm /root/elasticsearch-$VERSION.deb
-
-RUN mkdir /usr/share/elasticsearch/config && \
-    cp -a /etc/elasticsearch/* /usr/share/elasticsearch/config && \
-    mkdir /usr/share/elasticsearch/logs && \
-    mkdir /usr/share/elasticsearch/data && \
-    mkdir /usr/share/elasticsearch/config/templates && \
-    chown -R elasticsearch.elasticsearch /usr/share/elasticsearch/*
-
 VOLUME ["/usr/share/elasticsearch/data"]
-WORKDIR /usr/share/elasticsearch
 
-ENV ES_USER "elasticsearch"
-ENV ES_HOME "/usr/share/elasticsearch"
-ENV ES_JAVA_OPTS "-Des.insecure.allow.root=true -Xms2g -Xmx2g"
-
-USER elasticsearch
-
-CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
+ENV ES_JAVA_OPTS "-Xms2g -Xmx2g"
+ENV http.host "0.0.0.0"
+ENV bootstrap.memory_lock "false"
 
 COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
