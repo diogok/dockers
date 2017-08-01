@@ -1,0 +1,12 @@
+version: "2"
+services:
+  web:
+    image: nginx:1.13.3
+    volumes:
+      - .:/usr/share/nginx/html:ro
+  selenium:
+    image: selenium/standalone-chrome
+  tester:
+    image: diogok/cucumber-mink
+    volumes:
+      - .:/opt
