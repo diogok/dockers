@@ -10,3 +10,7 @@ Feature: basic test
     Given I am on homepage
     And I should see "Hello"
 
+  Scenario: API
+    Given I set api to "web"
+    When I GET /
+    Then response code should be 200
