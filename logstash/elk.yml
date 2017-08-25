@@ -1,0 +1,36 @@
+version: "2"
+services:
+
+  logstash:
+    image: diogok/logstash:gelf
+    environment:
+      ELASTICSEARCH: elasticsearch-logs
+    networks:
+      - logs
+
+  kibana-logs:
+    image: docker.elastic.co/kibana/kibana:5.5.2
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch-logs:9200
+    networks:
+      - logs
+
+  elasticsearch-logs:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.5.2
+    ports:
+      - 9200:9200
+    volumes:
+      - /usr/share/elasticsearch/data
+    environment:
+      - cluster.name=payments-docker-elk
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - "discovery.zen.ping.unicast.hosts=elasticsearch-logs"
+      - "ES_JAVA_OPTS=-Xmx1g -Xms1g"
+    networks:
+      - logs
+
+networks:
+  logs:

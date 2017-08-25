@@ -1,0 +1,5 @@
+FROM diogok/logstash
+
+ENV XPACK_MONITORING_ENABLED=false
+COPY logstash.gelf.conf /usr/share/logstash/pipeline/logstash.conf
+
