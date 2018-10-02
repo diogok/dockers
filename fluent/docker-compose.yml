@@ -7,7 +7,8 @@ services:
       ES_HOST: elasticsearch-logs
     ports:
       - 9514:9514/udp
-      - 12201:12201/udp
+      - 5432:5432/udp
+      - 9600:9600
 
   kibana-logs:
     image: docker.elastic.co/kibana/kibana:6.4.0
