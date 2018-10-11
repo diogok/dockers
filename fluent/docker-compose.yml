@@ -2,7 +2,7 @@ version: "2"
 services:
   fluent:
     build: .
-    image: diogok/fluentbit
+    image: diogok/fluentbit:v0.0.1
     environment:
       ES_HOST: elasticsearch-logs
     ports:
