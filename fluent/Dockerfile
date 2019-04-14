@@ -1,4 +1,4 @@
-FROM fluent/fluent-bit:0.14
+FROM fluent/fluent-bit:1.0.6
 
 CMD ["/fluent-bit/bin/fluent-bit","--config","/fluent-bit/etc/fluent.cfg"]
 

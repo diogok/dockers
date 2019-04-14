@@ -2,11 +2,13 @@ version: "2"
 services:
   fluent:
     build: .
-    image: diogok/fluentbit:v0.0.1
+    image: diogok/fluentbit:v0.0.4
     environment:
       ES_HOST: elasticsearch-logs
     ports:
       - 9514:9514/udp
+      - 9515:9515/udp
+      - 24224:24224/udp
       - 5432:5432/udp
       - 9600:9600
 
