@@ -1,5 +1,6 @@
 localhost:443, localhost:80 {
-root /var/www/html
+root {$ROOT}
+index {$INDEX}
 tls self_signed
 gzip
 }

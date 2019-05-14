@@ -10,8 +10,8 @@ EXPOSE 443
 
 CMD ["caddy", "--conf", "/etc/Caddyfile"]
 
-ENV INDEX index.html
-ENV ROOT /var/www/html
+#COPY Caddyfile /etc/Caddyfile
 
-COPY Caddyfile /etc/Caddyfile
+RUN echo ':80' > /etc/Caddyfile
+RUN echo 'proxy / {$PROXY}' >> /etc/Caddyfile
 
