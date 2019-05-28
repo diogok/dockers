@@ -1,0 +1,6 @@
+FROM busybox
+
+COPY prometheus-host.yml /etc/prometheus/prometheus.yml
+
+CMD ["tail","-n","100","-f","/etc/prometheus/prometheus.yml"]
+
