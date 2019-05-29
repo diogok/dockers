@@ -1,6 +1,5 @@
-localhost:443, localhost:80 {
+:80 {
 root {$ROOT}
 index {$INDEX}
-tls self_signed
 gzip
 }

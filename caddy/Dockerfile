@@ -2,7 +2,9 @@ FROM debian:stretch-slim
 
 RUN apt-get update && apt-get install -yq tar curl git gettext-base
 
-RUN curl "https://github.com/mholt/caddy/releases/download/v1.0.0/caddy_v1.0.0_linux_amd64.tar.gz" -L -o caddy.tar.gz && \
+ENV VERSION 1.0.0
+
+RUN curl https://github.com/mholt/caddy/releases/download/v${VERSION}/caddy_v${VERSION}_linux_amd64.tar.gz -L -o caddy.tar.gz && \
     tar --no-same-owner -C /usr/bin/ -xf caddy.tar.gz && rm caddy.tar.gz
 
 EXPOSE 80
