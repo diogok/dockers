@@ -1,11 +1,11 @@
-FROM fluent/fluent-bit:1.0.6
+FROM fluent/fluent-bit:1.1.2
 
 CMD ["/fluent-bit/bin/fluent-bit","--config","/fluent-bit/etc/fluent.cfg"]
 
 ADD fluent.cfg /fluent-bit/etc/fluent.cfg
 
-ENV ES_HOST elasticsearch
-ENV ES_PORT 9200
+ENV LOKI_HOST loki
+ENV LOKI_PORT 3100
 
-ADD es.cfg /fluent-bit/etc/output.cfg
+ADD loki.cfg /fluent-bit/etc/output.cfg
 
